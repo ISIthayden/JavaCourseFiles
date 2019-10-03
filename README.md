@@ -1,3 +1,3 @@
 # JavaCourseFiles
 
-Each subdirectory is its own exercise during the course
+Within each section folder are the activities within that section, each activity is its own project
