@@ -24,6 +24,7 @@ public class FlourPackProblem {
         if(kilos < goal){
             return false;
         }
+
         if(goal % 5 > smallCount){
             return false;
         }
