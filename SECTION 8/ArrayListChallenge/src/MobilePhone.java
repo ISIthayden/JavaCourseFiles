@@ -9,13 +9,11 @@ import java.util.ArrayList;
 
 public class MobilePhone {
     private ArrayList<Contact> contactList;
-    private String myNumber;
-    public MobilePhone(String number){
-        this.myNumber = myNumber;
+    public MobilePhone(){
         this.contactList = new ArrayList<Contact>();
     }
 
-    public boolean addContact(Contact contact){
+    public boolean createContact(Contact contact){
         if (findContact(contact.getName()) >= 0) {
             System.out.println("Contact already in the list");
             return false;
@@ -26,28 +24,22 @@ public class MobilePhone {
 
     public void displayContactList(){
         System.out.println("You have " + contactList.size() + " contacts in your contact list");
-        for(int i = 0; i < contactList.size(); i++){
-            System.out.println((i + 1) + ". " + contactList.get(i));
+        for(int i = 0; i < this.contactList.size(); i++){
+            System.out.println((i + 1) + ". " + contactList.get(i).getName() +
+		" : " + this.myContacts.get(i).getPhoneNumber());
         }
     }
     public boolean updateContact(Contact oldContact, Contact newContact){
         int position = findContact(oldContact);
         if(position >= 0){
-            this.contactList.updateContact(position, newContact);
+            this.contactList.set(position, newContact);
         }
-    }
-    private void updateContact(int position, Contact contact){
-        contactList.set(position, contact);
-        System.out.println("Contact: " + contact.getName() + " has been modified.");
     }
     public void removeContact(String contact){
         int position = findContact(contact);
         if(position >= 0){
             removeContact(position);
         }
-    }
-    private void removeContact(int position){
-        contactList.remove(position);
     }
     private int findContact(String name) {
         for (int i = 0; i < this.contactList.size(); i++) {

@@ -12,7 +12,4 @@ public class Contact {
     public String getNumber() {
         return number;
     }
-    public static Contact createContact(String name, String number){
-        return new Contact(name, number);
-    }
 }

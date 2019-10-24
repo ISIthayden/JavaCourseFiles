@@ -16,7 +16,7 @@ import java.util.Scanner;
 public class Main {
 
     private static Scanner scanner = new Scanner(System.in);
-    private static MobilePhone contactList = new MobilePhone();
+    private static MobilePhone mobilePhone = new MobilePhone();
     public static void main(String[] args) {
         boolean quit = false;
         int choice = 0;
@@ -59,11 +59,12 @@ public class Main {
         System.out.println("\t 5 - To search for a contact in the list.");
         System.out.println("\t 6 - To quit the application.");
     }
-
+// create name and number variables, read from user, create contact and add to list
     public static void addContact(){
         System.out.println("Please enter the contact name: ");
-        contactList.addContact(scanner.nextLine());
+        contactList.createContact(scanner.nextLine());
     }
+// use findContact
     public static void updateContact(){
         System.out.println("Enter contact name: ");
         String contact = scanner.nextLine();
@@ -71,11 +72,13 @@ public class Main {
         String newInfo = scanner.nextLine();
         contactList.updateContact(contact, newInfo);
     }
+// use findContact, ask for confirmation, remove if found
     public static void removeContact(){
-        System.out.println("Enter item to search: ");
+        System.out.println("Enter contact to remove: ");
         String contact = scanner.nextLine();
         contactList.removeContact(contact);
     }
+// add display of contact info, make sure inList works
     public static void findContact(){
         System.out.println("Contact to search for: ");
         String contact = scanner.nextLine();
