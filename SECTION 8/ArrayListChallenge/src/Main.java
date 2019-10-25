@@ -29,7 +29,7 @@ public class Main {
 
             switch(choice){
                 case 1:
-                    contactList.displayContactList();
+                    mobilePhone.displayContactList();
                     break;
                 case 2:
                     addContact();
@@ -59,33 +59,40 @@ public class Main {
         System.out.println("\t 5 - To search for a contact in the list.");
         System.out.println("\t 6 - To quit the application.");
     }
-// create name and number variables, read from user, create contact and add to list
+
     public static void addContact(){
-        System.out.println("Please enter the contact name: ");
-        contactList.createContact(scanner.nextLine());
+        System.out.println("Enter contact name: ");
+        String name = scanner.nextLine();
+        System.out.println("Enter phone number: ");
+        String number = scanner.nextLine();
+        Contact contact = new Contact(name, number);
+        if(mobilePhone.createContact(contact)){
+            System.out.println("Contact added");
+        }
     }
-// use findContact
     public static void updateContact(){
         System.out.println("Enter contact name: ");
-        String contact = scanner.nextLine();
+        String name = scanner.nextLine();
+
         System.out.println("Enter replacement phone number: ");
-        String newInfo = scanner.nextLine();
-        contactList.updateContact(contact, newInfo);
+        String newNumber = scanner.nextLine();
+
+        Contact newContact = new Contact(name, newNumber);
+        mobilePhone.updateContact(mobilePhone.getContact(name), newContact);
     }
-// use findContact, ask for confirmation, remove if found
     public static void removeContact(){
         System.out.println("Enter contact to remove: ");
         String contact = scanner.nextLine();
-        contactList.removeContact(contact);
+        mobilePhone.removeContact(contact);
     }
-// add display of contact info, make sure inList works
     public static void findContact(){
         System.out.println("Contact to search for: ");
-        String contact = scanner.nextLine();
-        if(contactList.inList(contact)){
-            System.out.println("Found " + contact + " in the contacts list");
+        String name = scanner.nextLine();
+        if(mobilePhone.inList(name)){
+            System.out.println("Found " + name + " in the contacts list: ");
+            mobilePhone.displayContact((mobilePhone.findContact(name)));
         } else {
-            System.out.println(contact + " is not in the contacts list");
+            System.out.println(name + " is not in the contacts list");
         }
     }
 }

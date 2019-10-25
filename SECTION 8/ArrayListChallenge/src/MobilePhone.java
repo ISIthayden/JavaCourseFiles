@@ -26,22 +26,26 @@ public class MobilePhone {
         System.out.println("You have " + contactList.size() + " contacts in your contact list");
         for(int i = 0; i < this.contactList.size(); i++){
             System.out.println((i + 1) + ". " + contactList.get(i).getName() +
-		" : " + this.myContacts.get(i).getPhoneNumber());
+		" : " + this.contactList.get(i).getNumber());
         }
     }
-    public boolean updateContact(Contact oldContact, Contact newContact){
+    public void displayContact(int position){
+        System.out.println("Name: " + this.contactList.get(position).getName() + " Number: "
+                + this.contactList.get(position).getNumber());
+    }
+    public void updateContact(Contact oldContact, Contact newContact){
         int position = findContact(oldContact);
         if(position >= 0){
             this.contactList.set(position, newContact);
         }
     }
-    public void removeContact(String contact){
-        int position = findContact(contact);
+    public void removeContact(String name){
+        int position = findContact(name);
         if(position >= 0){
-            removeContact(position);
+            this.contactList.remove(position);
         }
     }
-    private int findContact(String name) {
+    public int findContact(String name) {
         for (int i = 0; i < this.contactList.size(); i++) {
             Contact contact = this.contactList.get(i);
             if (contact.getName().equals(name)) {
@@ -53,11 +57,18 @@ public class MobilePhone {
     private int findContact(Contact contact){
         return this.contactList.indexOf(contact);
     }
-    public boolean inList(String contact){
-        int position = findContact(contact);
+    public boolean inList(String name){
+        int position = findContact(name);
         if(position >= 0){
             return true;
         }
         return false;
+    }
+    public Contact getContact(String name) {
+        int position = findContact(name);
+        if(position >=0) {
+            return this.contactList.get(position);
+        }
+        return null;
     }
 }
